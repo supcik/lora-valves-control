@@ -17,10 +17,10 @@ jobs:
       - name: Install PlatformIO
         run: pip install -U platformio
 
-      - name: Install Static Analysis Tools
+      - name: Run Static Analysis Tools
         run: pio check --skip-packages
 
-      - name: Build
+      - name: Build firmware (without keys)
         run: pio run
 
       - name: Upload firmware
