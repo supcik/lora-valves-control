@@ -3,33 +3,31 @@ name: PlatformIO CI
 on: [push]
 
 jobs:
-  install:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3.1.4
-      - run: pip install -U platformio
 
-  check:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - run: pio check --skip-packages
+      - name: Install pre-commit
+        run: pip install pre-commit
+      - name: Run pre-commit
+        run: pre-commit run --all-files
 
-  precommit:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - run: pip install pre-commit
-      - run: pre-commit run --all-files
+      - name: Install PlatformIO
+        run: pip install -U platformio
 
-  build:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - run: pio run
-      - uses: actions/upload-artifact@v3
+      - name: Install Static Analysis Tools
+        run: pio check --skip-packages
+
+      - name: Build
+        run: pio run
+
+      - name: Upload firmware
+        if: success()
+        uses: actions/upload-artifact@v3
         with:
           name: firmware
           path: |
             .pio/build/adafruit_feather_m0/firmware.bin
+            .pio/build/adafruit_feather_m0/firmware.elf
