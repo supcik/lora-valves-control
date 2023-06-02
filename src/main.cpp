@@ -39,7 +39,7 @@ const uint32_t kLoopSleep               = 1 * 60;  // 1 minute
 const uint32_t kLoraTransmissionTimeout = 30;      // 30 seconds
 
 const int kValvePins[nOfValves][2] = {
-    {2, 8}, {9, 4}, {5, 2}, {11, 10}, {1, 3}, {0, 2}};
+    {14, 15}, {16, 17}, {18, 19}, {0, 1}, {12, 11}, {6, 5}};
 
 void os_getArtEui(u1_t* buf) { memcpy_P(buf, kAppEUI, 8); }   // NOLINT
 void os_getDevEui(u1_t* buf) { memcpy_P(buf, kDevEUI, 8); }   // NOLINT
