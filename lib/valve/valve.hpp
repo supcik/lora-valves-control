@@ -20,10 +20,11 @@
 #include <Arduino.h>
 #include <RTCZero.h>
 
+static const int kPulseWidth = 1000; // 1000 ms
 class Valve {
    public:
     // NOLINTNEXTLINE
-    Valve(int id, RTCZero* rtc, int pinOn, int pinOff, int pulseWidth = 25);
+    Valve(int id, RTCZero* rtc, int pinOn, int pinOff, int pulseWidth = kPulseWidth);
     void Open();
     void Close(bool force = false);
     void ScheduleClose(int seconds);
