@@ -34,7 +34,7 @@
 
 const int kLedPin                       = 13;
 const int nOfValves                     = 6;
-const uint32_t kSendInterval            = 5 * 60;  // 5 minutes
+const uint32_t kSendInterval            = 2 * 60;  // 5 minutes
 const uint32_t kLoopSleep               = 1 * 60;  // 1 minute
 const uint32_t kLoraTransmissionTimeout = 30;      // 30 seconds
 
@@ -141,7 +141,7 @@ void SendLoraPacket() {
 }
 
 void setup() {
-    delay(2000);  // Wait 2 seconds for the serial to be available - NOLINT
+    delay(1000);  // Wait 1 seconds for the serial to be available - NOLINT
     pinMode(kLedPin, OUTPUT);
     digitalWrite(kLedPin, LOW);
 
