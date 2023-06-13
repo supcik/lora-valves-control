@@ -30,7 +30,7 @@ function decodeUplink(input) {
 ## TTN downlink payload formatter
 
 ```javascript
-const periods = [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 45, 60, 90, 120, -1];
+const periods = [0, 1, 2, 3, 4, 5, 6, 15, 20, 30, 40, 45, 60, 90, 120, -1];
 
 function encodeDownlink(input) {
   return {

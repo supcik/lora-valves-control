@@ -20,7 +20,7 @@
 #include <Arduino.h>
 #include <RTCZero.h>
 
-static const int kPulseWidth = 500; // 500 ms
+static const int kPulseWidth = 300; // 300 ms
 class Valve {
    public:
     // NOLINTNEXTLINE
