@@ -18,7 +18,7 @@
 #include "payload.hpp"
 
 const int Payload::periods_[] = {
-    0, 1, 2, 3, 4, 5, 6, 15, 20, 30, 40, 45, 60, 90, 120, -1};
+    0, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, -2, -1};
 
 // NOLINTNEXTLINE
 void Payload::SetPayload(u_int8_t* payload, int len) {
