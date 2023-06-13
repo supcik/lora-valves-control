@@ -34,7 +34,7 @@
 
 const int kLedPin                       = 13;
 const int nOfValves                     = 6;
-const uint32_t kSendInterval            = 2 * 60;  // 5 minutes
+const uint32_t kSendInterval            = 5 * 60;  // 5 minutes
 const uint32_t kLoopSleep               = 1 * 60;  // 1 minute
 const uint32_t kLoraTransmissionTimeout = 30;      // 30 seconds
 
@@ -92,6 +92,10 @@ void onEvent(ev_t event) {
                     int p = payload.GetPeriod(i);  // NOLINT
                     if (p == 0) {
                         Log.infoln("Nothing to do for valve %i", i);
+                        continue;
+                    }
+                    if (p < -1) { // open forever
+                        valves[i]->Open();
                         continue;
                     }
                     if (p < 0) {
