@@ -22,11 +22,6 @@
 Battery::Battery(int pin) : vbatPin_(pin) {}
 
 // Code from
-// https://learn.adafruit.com/adafruit-feather-m0-adalogger/power-management
-float Battery::Voltage() {
-    float vbat = analogRead(vbatPin_);
-    vbat *= 2;     // we divided by 2, so multiply back
-    vbat *= 3.3;   // Multiply by 3.3V, our reference voltage / NOLINT
-    vbat /= 1024;  // convert to voltage / NOLINT
-    return vbat;
+uint16_t Battery::Voltage() {
+    return analogRead(vbatPin_);
 }

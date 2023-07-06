@@ -39,7 +39,7 @@ const uint32_t kLoopSleep               = 1 * 60;  // 1 minute
 const uint32_t kLoraTransmissionTimeout = 30;      // 30 seconds
 
 const int kValvePins[nOfValves][2] = {
-    {14, 15}, {16, 17}, {18, 19}, {0, 1}, {12, 11}, {10, 5}};
+    {21, 20}, {16, 17}, {18, 19}, {0, 1}, {12, 11}, {10, 5}};
 
 void os_getArtEui(u1_t* buf) { memcpy_P(buf, kAppEUI, 8); }   // NOLINT
 void os_getDevEui(u1_t* buf) { memcpy_P(buf, kDevEUI, 8); }   // NOLINT
@@ -123,12 +123,11 @@ void SendLoraPacket() {
         return;
     }
     char buf[32];  // NOLINT
-    float vbat = battery.Voltage();
-    Log.infoln("Battery voltage: %sV", String(vbat).c_str());
-    uint16_t vbat16 = (uint16_t)roundf(vbat * 100);  // NOLINT
+    uint16_t vbat = battery.Voltage();
+    Log.infoln("Battery voltage: %dV", vbat);
     uint8_t payload[3];
-    payload[0] = vbat16 & 0xFF;  // LSB - NOLINT
-    payload[1] = vbat16 >> 8;    // MSB - NOLINT
+    payload[0] = vbat & 0xFF;  // LSB - NOLINT
+    payload[1] = vbat >> 8;    // MSB - NOLINT
 
     uint8_t valvesStatus = 0;  // NOLINT
     for (int i = 0; i < nOfValves; i++) {

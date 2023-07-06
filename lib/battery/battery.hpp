@@ -18,12 +18,12 @@
 #pragma once
 
 #include <Arduino.h>
-const int kDefaultVbatPin = A7;  // A7 is indeed D9 on Adafruit Feather M0
+const int kDefaultVbatPin = A1;  // A1 is indeed 15/AIN2 on Adafruit Feather M0
 
 class Battery {
    public:
     explicit Battery(int vbatPin = kDefaultVbatPin);
-    float Voltage();
+    uint16_t Voltage();
 
    private:
     int vbatPin_;
